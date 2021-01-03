@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    
+        <!-- iOS meta tags -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+        <link rel="stylesheet" type="text/css" href="papaya.css?build=1460" />
+        <script type="text/javascript" src="papaya.js?build=1460"></script>
+
+        <script>
+        $(document).ready(function(){
+            $(".papaya-main-swap").click(function() {
+                //papayaContainers[0].viewer.rotateViews();
+                papayaContainers[0].viewer.screenVolumes[1].alpha = 0.0;  // 0 to 1
+                papayaContainers[0].viewer.drawViewer(true, false);
+            });
+        });
+        </script>
+        
+        
+        <title>Papaya Viewer</title>
+    
+        <script type="text/javascript">
+            var params = [];
+            params["encodedImages"] = ["T1","CT"];
+            params["T1"] = {"alpha": 1.0, "interpolation":false};
+            params["CT"] = {"alpha": 0.5, "interpolation":false, "lut": "Overlay (Positives)"};
+            //params['kioskMode'] = true;
+            //params['showControls'] = false;
+            params["showOrientation"] = true;
+            params["radiological"] = true;
+            params['showControlBar'] = true;
+            
+            var params2 = [];
+            params2["encodedImages"] = ["T1"];
+            params["T1"] = {"alpha": 1.0, "interpolation":false};
+            //params['kioskMode'] = true;
+            //params['showControls'] = false;
+            params2["showOrientation"] = true;
+            params2["radiological"] = true;
+            params2['showControlBar'] = true;
+
+            function toggleViewer() {
+                $(".toggleViewer1").toggle();
+                $(".toggleViewer2").toggle();
+                papaya.Container.resizePapaya();
+                papaya.Container.syncViewers = true;
+                papaya.Container.syncViews = true;
+            }
+
+            // need to set the two viewers in sync position to work
+            papaya.Container.syncViewers = true;
+            //papaya.Container.syncViewersWorld = true;
+            // http://ric.uthscsa.edu/mango/forum/viewtopic.php?p=1516
+
+        </script>
+
+    </head>
+
+
+    <body>
+        
+        <div class="toggleViewer1 papaya" data-params="params">
+            <button onclick="toggleViewer()" type="button" style="display: block; top: 10px; left: 10px; position: relative;">Hide</button>      
+        </div>
+        <div class="toggleViewer2 papaya" data-params="params2">
+            <button onclick="toggleViewer()" type="button" style="display: block; top: 10px; left: 10px; position: relative;">Show</button>
+        </div>
+        
+        <script type="text/javascript">
+            $(".toggleViewer2").hide();
+        </script>
+        
+    </body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    
+        <!-- iOS meta tags -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <link rel="stylesheet" type="text/css" href="papaya.css?build=1460" />
+        <script type="text/javascript" src="papaya.js?build=1460"></script>
+
+        <script>
+        $(document).ready(function(){
+            $(".papaya-main-swap").click(function() {
+                var cur_alpha = papayaContainers[0].viewer.screenVolumes[1].alpha;
+                if (cur_alpha > 0.0) { //up key
+                    papayaContainers[0].viewer.screenVolumes[1].alpha = 0.0;  // 0 to 1
+                } else {
+                    papayaContainers[0].viewer.screenVolumes[1].alpha = 0.5;  // 0 to 1
+                }
+                papayaContainers[0].viewer.drawViewer(true, false);
+            });
+        });
+
+        $(document).ready(function(){
+            $(".papaya-main-show").click(function() {
+                //papayaContainers[0].viewer.rotateViews();
+                papayaContainers[0].viewer.screenVolumes[1].alpha = 0.5;  // 0 to 1
+                papayaContainers[0].viewer.drawViewer(true, false);
+            });
+        });
+
+        </script>
+        
+        <title>Papaya Viewer</title>
+
+        <script type="text/javascript">
+            var params = [];
+            params["encodedImages"] = ["T1","CT"];
+            params["T1"] = {"alpha": 1.0, "interpolation":false};
+            params["CT"] = {"alpha": 0.5, "interpolation":false, "lut": "Overlay (Positives)"};
+            //params['kioskMode'] = true;
+            //params['showControls'] = false;
+            params["showOrientation"] = true;
+            params["radiological"] = true;
+            params['showControlBar'] = true;
+            params['noNewFiles'] = true;
+
+            // https://github.com/rii-mango/Papaya/wiki/Configuration#ui-parameters
+
+            // put this into body - works
+            // <div class="papaya" data-params="params">>
+            // <button id="swap-slice" class="papaya-main-swap" type="button" style="display: block; top: 475px; left: 700px; position: relative;">Swap Main Slice</button>
+            // <button id="show-slice" class="papaya-main-show" type="button" style="display: block; top: 475px; left: 400px; position: relative;">Show</button>
+            // </div>
+        </script>
+
+    </head>
+
+
+    <body>
+        
+        <div class="papaya" data-params="params">
+        <button id="swap-slice" class="papaya-main-swap" type="button" style="display: block; top: 625px; left: 250px; position: relative;">Toggle</button>
+        </div>
+        
+        
+    </body>
+</html>
