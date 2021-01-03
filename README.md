@@ -1,5 +1,5 @@
 # Papaya wrap
-Use case: you just registered two 3D NIfTI-formatted volumes (e.g. 3D-T1w-MRI to/from CT) and want to check their alignment.
+_Use case_: you just registered two 3D NIfTI-formatted volumes (e.g. 3D-T1w-MRI to/from CT) and want to check their alignment.
 
 
 To do this, you normally pull data locally and use a standard viewer (fsleyes, MRICron, ITKSnap, ...) or get a registration summary.
