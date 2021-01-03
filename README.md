@@ -6,6 +6,14 @@ Use case: you just completed a registration step, say T1w-MRI to CT and want to 
 
 It includes all configuration from a template html, default is simple overlay with a quick toggle button altering overlay transparency.
 
+## Why this?
+
+You just completed one/many registrations between two 3D volumes (here example is CT vs 3D-T1w-MRI) and need to check quickly alignment is ok without pulling all the dataset to local (or no suitable viewer available).
+
+Adding a line of code to call this wrapper after each registration provides a self-contained registration qc - like similar approaches with animation but with nice viewer capabilities.
+
+Different modalities and checks are easy to configure defining a different html template (or scripting template generation in a notebook?).
+
 
 ## Usage example
 
